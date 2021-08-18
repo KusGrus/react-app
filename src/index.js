@@ -1,6 +1,13 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.css'
 
-const element = <h1>It's React!</h1>
+import Counter from './components/counter'
 
-ReactDom.render(element, document.querySelector('#root'))
+
+ReactDom.render(
+    <React.StrictMode>
+        <Counter/>
+    </React.StrictMode>,
+    document.querySelector('#root')
+)
