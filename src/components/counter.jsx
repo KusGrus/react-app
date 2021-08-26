@@ -1,27 +1,25 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-const Counter = () => {
-    const [count, setCount] = useState(0)
+const Counter = ({id, value, name, onChangeCount, onDelete }) => {
 
-    const formCount = () => count === 0 ? 'Zero' : count
-    const getBageClasses = () => {
+    const formCount = () => value === 0 ? 'Zero' : value
+
+    const getBadgeClasses = () => {
         let classes = 'badge m-2 bg-'
-        classes += count === 0 ? 'danger' : 'primary'
+        classes += value === 0 ? 'danger' : 'primary'
         return classes
-    }
-
-    const changeCount = step => {
-        const diff = count + step < 0 ? 0 : count + step
-        setCount(diff)
     }
 
     return (
         <React.Fragment>
-            <button onClick={() => changeCount(-1)} className='btn btn-secondary btn-sm'
-                    disabled={count === 0}>Decrement
+            <h4>{name}</h4>
+            <button onClick={() => onChangeCount(id, -1)} className='btn btn-secondary btn-sm'
+                    disabled={value === 0}>Decrement
             </button>
-            <span className={getBageClasses()}>{formCount()}</span>
-            <button onClick={() => changeCount(1)} className='btn btn-secondary btn-sm'>Increment</button>
+            <span className={getBadgeClasses()} >{formCount()}</span>
+            <button onClick={() => onChangeCount(id, 1)} className='btn btn-secondary btn-sm'>Increment
+            </button>
+            <button onClick={() => onDelete(id)} className='btn btn-danger btn-sm m-2'>Delete</button>
         </React.Fragment>
     )
 }
